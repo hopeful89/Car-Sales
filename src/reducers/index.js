@@ -20,13 +20,22 @@ const initialState = {
 export const dummyReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_FEATURE:
+      //TODO add conditional to keep the state from changing on additional adds will need to compare ids
       return {
         ...state,
         car: {...state.car, features: [...state.car.features, action.payload] },
         additionalPrice: state.additionalPrice += action.payload.price
       };
     case REMOVE_FEATURE:
-      return state;
+      console.log('this is remove feature', action.payload.id)
+      //should be very similar to add just using a filter of state.car.features
+      //make sure to pass in the object to compare a name/id
+      //dont forget to remove the price from the total as well
+      return {
+        ...state,
+        car: {...state.car, features: state.car.features.filter(obj=> obj.id !== action.payload.id) },
+        additionalPrice: state.additionalPrice -= action.payload.price
+      };
     default:
       return state;
   }

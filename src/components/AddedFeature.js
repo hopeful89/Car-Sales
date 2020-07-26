@@ -1,11 +1,11 @@
 import React from 'react';
 
-const AddedFeature = ({feature}) => {
-  // console.log('AddedFeature mapped props', feature)
+const AddedFeature = ({feature, removeFeature}) => {
+  console.log('AddedFeature mapped props', feature)
   return (
     <li>
       {/* TODO Add an onClick to run a function to remove a feature */}
-      <button className="button">{feature.name}</button>
+      <button onClick={() => removeFeature(feature)} className="button">{feature.name}</button>
       
     </li>
   );
